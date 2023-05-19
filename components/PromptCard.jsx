@@ -1,4 +1,7 @@
 "use client"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 import { useState } from "react";
 import Image from "next/image";
@@ -7,6 +10,9 @@ import { useRouter, usePathname } from "next/navigation";
 
 const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const [copied, setCopied] = useState("");
+  const {data: session} = useSession()
+  const pathName = usePathname()
+  const router = useRouter()
 
   const handleCopy = () => {
     setCopied(post.prompt)
@@ -53,6 +59,15 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
       >
         {post.tag}
       </p>
+
+      {session?.user.id === post.creator._id && pathName === "/profile" && (
+        <div className="mt-1 flex-end gap-4 border-t border-gray-100 pt-3">  
+         <FontAwesomeIcon icon={faPenToSquare} style={{color: "#666666",}} onClick={handleEdit} className='cursor-pointer' />
+         <FontAwesomeIcon icon={faTrash} style={{color: "#666666",}} onClick={handleDelete} 
+         className='cursor-pointer' />
+         
+        </div>
+      )}
     </div>
   )
 };
