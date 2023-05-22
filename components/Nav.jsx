@@ -11,7 +11,6 @@ const Nav = () => {
   const [toggleDropDown, setToggleDropDown] = useState(false);
 
   useEffect(() => {
-    console.log("Nav", session)
     const setUpProviders = async () => {
       const response = await getProviders();
 
@@ -56,17 +55,17 @@ const Nav = () => {
           </div>
         ) : (
           <>
-
-            {providers && Object.values(providers).map((provider) => (
-              <button
-                type="button"
-                key={provider.name}
-                onClick={() => signIn(provider.id)}
-                className="black_btn"
-              >
-                Sign In
-              </button>
-            ))}
+            {providers &&
+              Object.values(providers).map((provider) => (
+                <button
+                  type="button"
+                  key={provider.name}
+                  onClick={() => signIn(provider.id)}
+                  className="black_btn"
+                >
+                  Sign In
+                </button>
+              ))}
           </>
         )}
       </div>
@@ -114,16 +113,17 @@ const Nav = () => {
           </div>
         ) : (
           <>
-            {providers && Object.values(providers).map((provider) => (
-              <button
-                type="button"
-                key={provider.name}
-                onClick={() => signIn(provider.id)}
-                className="black_btn"
-              >
-                Sign In
-              </button>
-            ))}
+            {providers &&
+              Object.values(providers).map((provider) => (
+                <button
+                  type="button"
+                  key={provider.name}
+                  onClick={() => signIn(provider.id)}
+                  className="black_btn"
+                >
+                  Sign In
+                </button>
+              ))}
           </>
         )}
       </div>
